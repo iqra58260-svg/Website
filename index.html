@@ -5,139 +5,621 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SAKA BHAYANGKARA RANTING POLSEK BANGGAE</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    /* ===== Reset ===== */
+    * {
       margin: 0;
       padding: 0;
-      line-height: 1.6;
-      background-color: #f9f9f9;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
     }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.8;
+      background: #f4f6f9;
+      color: #333;
+    }
+
+    /* ===== Header ===== */
     header {
-      background: #8B0000; /* merah tua */
+      background: linear-gradient(135deg, #8B0000, #B22222);
       color: white;
-      padding: 20px;
       text-align: center;
+      padding: 50px 20px;
+      position: relative;
+      overflow: hidden;
     }
+    header img {
+      border-radius: 50%;
+      border: 5px solid #fff;
+      box-shadow: 0 0 30px rgba(255,255,255,0.5);
+      animation: fadeIn 2s ease-in-out;
+      transition: transform 0.5s, box-shadow 0.5s;
+    }
+    header img:hover {
+      transform: scale(1.12) rotate(-2deg);
+      box-shadow: 0 0 40px rgba(255,255,255,0.8);
+    }
+    header h1 {
+      margin-top: 15px;
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+      animation: slideDown 1.5s ease;
+    }
+
+    /* ===== Navigation ===== */
     nav {
-      background: #B22222; /* merah brick */
+      background: #B22222;
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: all 0.3s ease;
     }
     nav a {
       color: white;
-      padding: 14px 20px;
+      padding: 15px 22px;
       text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      border-radius: 6px;
+      margin: 5px;
     }
     nav a:hover {
-      background: #FF0000; /* merah terang saat hover */
+      background: #FF4C4C;
+      transform: scale(1.08);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
+
+    /* ===== Sections ===== */
     section {
-      padding: 20px;
+      padding: 50px 20px;
+      max-width: 1000px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
     }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    section h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #8B0000;
+      border-left: 6px solid #B22222;
+      padding-left: 15px;
+    }
+    section h3 {
+      margin-top: 25px;
+      margin-bottom: 12px;
+      color: #B22222;
+    }
+    section p {
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    .first-line-indent {
+      text-indent: 2em;
+      margin-bottom: 1rem;
+    }
+
+    /* ===== Gallery ===== */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+    }
+    .gallery .item {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+    }
+    .gallery .item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
     }
     .gallery img {
       width: 100%;
-      border-radius: 10px;
+      height: 180px;
+      object-fit: cover;
+      transition: transform 0.4s ease, filter 0.4s ease;
     }
+    .gallery .item:hover img {
+      transform: scale(1.08);
+      filter: brightness(1.1);
+    }
+    .gallery p {
+      padding: 12px;
+      background: #f4f4f4;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* ===== Footer ===== */
     footer {
-      background: #8B0000; /* merah tua */
+      background: #8B0000;
       color: white;
       text-align: center;
-      padding: 10px;
+      padding: 25px;
+      margin-top: 50px;
+      font-size: 0.95rem;
+      box-shadow: 0 -6px 15px rgba(0,0,0,0.1);
     }
+
+    /* ===== Animations ===== */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.6rem; }
+      nav a { padding: 10px 15px; font-size: 0.9rem; }
+      .gallery img { height: 150px; }
+    }
+    @media (max-width: 480px) {
+      section { padding: 30px 15px; }
+      header { padding: 35px 15px; }
+    }
+
+    /* ===== Social Icons ===== */
+    #keterangan ul li a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #B22222;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    #keterangan ul li a:hover {
+      color: #FF0000;
+    }
+
+<style>
+/* ===== Header ===== */
+header {
+  background: linear-gradient(135deg, #8B0000, #B22222);
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+  position: relative;
+}
+
+.logo-container {
+  display: inline-block;
+  background: radial-gradient(circle at center, #fff 0%, #f1f1f1 100%);
+  padding: 15px;
+  border-radius: 50%;
+  box-shadow: 0 0 25px rgba(0,0,0,0.3);
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+
+.logo-container:hover {
+  transform: scale(1.12) rotate(-3deg);
+  box-shadow: 0 0 35px rgba(0,0,0,0.5);
+}
+
+header img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+/* ===== Header Title ===== */
+header h1 {
+  margin-top: 15px;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+}
+
+/* ===== Navigation ===== */
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: #B22222;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+  padding: 8px 0;
+  border-radius: 0 0 15px 15px;
+}
+
+nav a {
+  color: white;
+  padding: 12px 20px;
+  margin: 5px 10px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 10px;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  display: block;
+  height: 3px;
+  background: #fff;
+  border-radius: 3px;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: right;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+nav a:hover {
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  line-height: 1.8;
+  background: #f4f6f9;
+  color: #333;
+}
+
+/* ===== Header ===== */
+header {
+  background: linear-gradient(135deg, #8B0000, #B22222);
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-container {
+  display: inline-block;
+  border-radius: 50%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+
+.logo-container:hover {
+  transform: scale(1.15) rotate(-3deg);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.7);
+}
+
+header img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: transparent;
+}
+
+header h1 {
+  margin-top: 15px;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  animation: slideDown 1.5s ease;
+}
+
+/* ===== Navigation ===== */
+nav {
+  background: #B22222;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+nav a {
+  color: white;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  margin: 5px;
+  border-radius: 8px;
+}
+
+nav a:hover {
+  background: #FF0000;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* ===== Animations ===== */
+@keyframes slideDown {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+/* Logo besar di belakang */
+.logo-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;       /* ukuran logo besar */
+  height: 400px;
+  background: url('images/banggae.png') no-repeat center/contain;
+  transform: translate(-50%, -50%);
+  opacity: 0.1;       /* transparansi logo besar */
+  filter: blur(10px); /* efek blur */
+  z-index: 1;
+}
+
+/* Logo utama di depan */
+.logo-container {
+  position: relative; /* supaya di atas logo-bg */
+  display: inline-block;
+  border-radius: 50%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+  transition: transform 0.5s, box-shadow 0.5s;
+  z-index: 2;
+}
+
+.logo-container:hover {
+  transform: scale(1.15) rotate(-3deg);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.7);
+}
+
+header img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: transparent;
+}
+
+header h1 {
+  position: relative; /* supaya di atas logo-bg */
+  z-index: 2;
+  margin-top: 15px;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  animation: slideDown 1.5s ease;
+}
+/* Logo besar di belakang */
+.logo-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;       /* ukuran logo besar */
+  height: 400px;
+  background: url('images/banggae.png') no-repeat center/contain;
+  transform: translate(-50%, -50%);
+  opacity: 0.25;       /* sekarang lebih terlihat */
+  filter: blur(8px);   /* sedikit blur */
+  z-index: 1;
+}
+
+/* Logo utama di depan dengan efek pinggiran putih */
+.logo-container {
+  position: relative; /* di atas logo-bg */
+  display: inline-block;
+  padding: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2); /* efek transparan di belakang logo utama */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 0 4px white; /* pinggiran putih */
+  transition: transform 0.5s, box-shadow 0.5s;
+  z-index: 2;
+}
+
+.logo-container:hover {
+  transform: scale(1.15) rotate(-3deg);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.9), 0 0 0 4px white;
+}
+
+header img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: transparent;
+header {
+  background: #ffffff; /* putih */
+  color: #8B0000;
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Logo utama di depan dengan pinggiran putih */
+.logo-container {
+  display: inline-block;
+  padding: 10px;
+  border-radius: 50%;
+  background: white; /* pinggiran putih */
+  box-shadow: 0 0 20px rgba(0,0,0,0.2); /* bayangan halus */
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+
+.logo-container:hover {
+  transform: scale(1.15) rotate(-3deg);
+  box-shadow: 0 0 40px rgba(0,0,0,0.3);
+}
+
+header img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: transparent;
+}
+
+/* Hapus logo besar di belakang */
+/* Jadi tidak perlu kode .logo-bg lagi */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.item {
+  text-align: center;
+  cursor: pointer;
+}
+
+.item img {
+  width: 200px;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.item img:hover {
+  transform: scale(1.05);
+}
+
+/* Overlay / lightbox */
+.overlay {
+  display: none;
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.overlay img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.close-btn {
+  padding: 10px 20px;
+  background: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
   </style>
 </head>
-
 <body>
   <header>
-    <img src="images/banggae.png" alt="Logo Organisasi" width="120" height="120">
-    <h1>SAKA  BHAYANGKARA RANTING POLSEK BANGGAE</h1>
-  </header>
+  <div class="logo-bg"></div> <!-- Logo besar blur di belakang -->
+  <div class="logo-container">
+    <img src="images/banggae.png" alt="Logo Organisasi">
+  </div>
+  <h1>SAKA BHAYANGKARA RANTING POLSEK BANGGAE</h1>
+</header>
 
-  <nav>
-    <a href="#Saka">Satuan Karya</a>
-    <a href="#Saka bhayangkara">Saka Bhayangkara</a>
-    <a href="#satuan">Badge dan Krida</a>
-    <a href="#dokumentasi">Dokumentasi</a>
-    <a href="#keterangan">Keterangan</a>
-  </nav>
+<nav>
+  <a href="#Saka">Satuan Karya</a>
+  <a href="#Saka bhayangkara">Saka Bhayangkara</a>
+  <a href="#satuan">Badge dan Krida</a>
+  <a href="#dokumentasi">Dokumentasi</a>
+  <a href="#keterangan">Keterangan</a>
+</nav>
 
+
+  <!-- ===== ISI ASLI WEB ===== -->
   <section id="Saka">
-       <h2>Satuan Karya (Saka) </h2>
-      <p>  <style>.first-line-indent { 
-      text-indent: 2em;
-      /* jika ingin jarak antar paragraf */
-      margin: 0 0 1rem 0;
-      line-height: 1.6;
-    }
-  </style>
-     <p class="first-line-indent">Satuan Karya (Saka) Dalam Gerakan Pramuka Adalah Wadah Kegiatan Khusus Bagi Pramuka Penegak (Usia 16–20 Tahun) Dan Pandega (Usia 21–25 Tahun) Untuk Mengembangkan Minat, Bakat, Pengetahuan, Dan Keterampilan Tertentu Sesuai Bidangnya.</p>
-1.  Pengertian
-<ul style="margin-left: 40px;"><li>Satuan Karya Sering Disingkat Saka.
-<li>Saka Dibentuk Melalui Kerja Sama Gerakan Pramuka Dengan Instansi Pemerintah Atau Lembaga Tertentu Yang Memiliki Bidang Keahlian.</li>
-<li>Anggota Saka Disebut Anggota Saka, Sedangkan Unit Terkecil Dalam Saka Disebut Krida (Kelompok Kecil Yang Membina Keterampilan Tertentu).</li>
-</ul>
-<br>2.  Tujuan Saka
-<ul style="margin-left: 40px;"><li>Memberikan Kesempatan Kepada Pramuka Penegak Dan Pandega Untuk Memperluas Pengetahuan Serta Keterampilan Sesuai Minatnya.</li>
-<li>Membina Semangat Pengabdian Kepada Masyarakat Dan Bangsa.</li>
-<li>Membekali Generasi Muda Dengan Kecakapan Hidup (Life Skills) Di Bidang Tertentu.</li>
-</ul>
-</p>
+    <h2>Satuan Karya (Saka)</h2>
+    <p class="first-line-indent">Satuan Karya (Saka) Dalam Gerakan Pramuka Adalah Wadah Kegiatan Khusus Bagi Pramuka Penegak (Usia 16–20 Tahun) Dan Pandega (Usia 21–25 Tahun) Untuk Mengembangkan Minat, Bakat, Pengetahuan, Dan Keterampilan Tertentu Sesuai Bidangnya.</p>
+    <h3>1. Pengertian</h3>
+    <ul style="margin-left: 40px;">
+      <li>Satuan Karya Sering Disingkat Saka.</li>
+      <li>Saka Dibentuk Melalui Kerja Sama Gerakan Pramuka Dengan Instansi Pemerintah Atau Lembaga Tertentu Yang Memiliki Bidang Keahlian.</li>
+      <li>Anggota Saka Disebut Anggota Saka, Sedangkan Unit Terkecil Dalam Saka Disebut Krida (Kelompok Kecil Yang Membina Keterampilan Tertentu).</li>
+    </ul>
+    <h3>2. Tujuan Saka</h3>
+    <ul style="margin-left: 40px;">
+      <li>Memberikan Kesempatan Kepada Pramuka Penegak Dan Pandega Untuk Memperluas Pengetahuan Serta Keterampilan Sesuai Minatnya.</li>
+      <li>Membina Semangat Pengabdian Kepada Masyarakat Dan Bangsa.</li>
+      <li>Membekali Generasi Muda Dengan Kecakapan Hidup (Life Skills) Di Bidang Tertentu.</li>
+    </ul>
   </section>
 
   <section id="Saka bhayangkara">
     <h2>Saka Bhayangkara</h2>
-   <p class="first-line-indent">Saka Bhayangkara adalah salah satu satuan karya (saka) dalam Gerakan Pramuka Indonesia yang memiliki fokus pada bidang keamanan, ketertiban, dan kepolisian. Saka ini dibentuk untuk memberikan pendidikan, pelatihan, dan pengalaman praktis kepada anggota pramuka muda dalam memahami tugas-tugas kepolisian dan menjaga keamanan masyarakat. Berikut penjelasan lebih lengkap:.</p>
-</p>
-  <ol start = "1">
-  <h3><li> Tujuan Saka Bhayangkara</li></h3></ol>
-   <ul style="margin-left: 40px;">
-    <li>Membekali anggota Pramuka dengan <b>pengetahuan dan keterampilan kepolisian</b>, seperti disiplin, pengendalian lalu lintas, pertolongan pertama, dan penanganan keadaan darurat.</li>
-  <li>Mengembangkan <b>sikap tanggung jawab, disiplin, dan kepedulian terhadap masyarakat</b>.</li>
-  <li>Menyiapkan generasi muda untuk <b>ikut serta dalam menjaga keamanan dan ketertiban masyarakat</b>.</li></ul>
-  
-     <ol start="2"><h3><li>Materi Kegiatan</li></p></h3></ol>
-     <ul style="margin-left: 40px;"> <p>Kegiatan di Saka Bhayangkara biasanya meliputi:</ul>
-   <ul style="margin-left: 40px;"> 
+    <p class="first-line-indent">Saka Bhayangkara adalah salah satu satuan karya (saka) dalam Gerakan Pramuka Indonesia yang memiliki fokus pada bidang keamanan, ketertiban, dan kepolisian. Saka ini dibentuk untuk memberikan pendidikan, pelatihan, dan pengalaman praktis kepada anggota pramuka muda dalam memahami tugas-tugas kepolisian dan menjaga keamanan masyarakat.</p>
+    <h3>1. Tujuan Saka Bhayangkara</h3>
+    <ul style="margin-left: 40px;">
+      <li>Membekali anggota Pramuka dengan <b>pengetahuan dan keterampilan kepolisian</b>, seperti disiplin, pengendalian lalu lintas, pertolongan pertama, dan penanganan keadaan darurat.</li>
+      <li>Mengembangkan <b>sikap tanggung jawab, disiplin, dan kepedulian terhadap masyarakat</b>.</li>
+      <li>Menyiapkan generasi muda untuk <b>ikut serta dalam menjaga keamanan dan ketertiban masyarakat</b>.</li>
+    </ul>
+    <h3>2. Materi Kegiatan</h3>
+    <ul style="margin-left: 40px;">
       <li><b>Pendidikan dan pelatihan kepolisian:</b> teknik baris-berbaris, disiplin, komunikasi efektif.</li>
       <li><b>Simulasi keamanan:</b> patroli, pengaturan lalu lintas, pengenalan tugas polisi.</li>
       <li><b>Pertolongan pertama:</b> memberikan pertolongan pada kecelakaan atau situasi darurat.</li>
-      <li><b>Kegiatan sosial:</b> ikut dalam kegiatan masyarakat seperti bakti sosial atau kampanye keselamatan.</li></ul>
-
-   <ol start="3">
-  <h3><li>Anggota Saka Bhayangkara</li></h3></ol>
-   <ul style="margin-left: 40px;">
-    <li>Terbuka bagi anggota Pramuka Penegak dan Pandega yang <b>memiliki minat dalam bidang keamanan dan kepolisian</b>.</li>
-    <li>Anggota mendapat <b>pelatihan khusus dari Polri</b> dan bisa mengikuti lomba atau kegiatan kepemudaan di tingkat lokal maupun nasional.</li></ul>
-
-   <ol start="4<ul style="margin-left: 40px;>   <h3><li>Manfaat Mengikuti Saka Bhayangkara</li></h3></ol>
-   <ul style="margin-left: 40px;">
-    <li>Meningkatkan <b>kedisiplinan, tanggung jawab, dan jiwa kepemimpinan</b>.</li>
-    <li>Mendapatkan <b>pengetahuan praktis tentang keamanan dan kepolisian</b>.</li>
-    <li>Kesempatan untuk <b>mengabdikan diri pada masyarakat</b> melalui kegiatan nyata.</li></ul>
-
-<h2>Sejarah Singkat</h2>
-   <p class="first-line-indent">Satuan Karya Pramuka (Saka) Bhayangkara dibentuk pada tahun 1996, dan pada tahun tersebut masih bernama Pramuka KAMTIBMAS (Keamanan Ketertiban Masyarakat). Pembentukan tersebut atas instruksi bersama MENTRI / PANGLIMA POLISI DAN KAKWARNAS : NO. POL. : 28/Inst. /MK/1966 dan SK KWARNAS No. 4 /1696 tertanggal : 1 Juli 1966, dengan nama PRAMUKA KAMTIBMAS. </p>
-</p>
-<p> <ul style="margin-left: 40px;"> 
-  Pada waktu itu terdapat sembilan krida, yaitu :</ul>
-</p><ul style="margin-left: 10px;"> 
-<ol style="list-style-type: decimal;">
-<li>Krida LANTAS (Lalu Lintas)</li>
-<li>Krida PMK (Pemadam Kebakaran)</li>
-<li>Krida SAR (Searce And Rescue)</li>
-<li>Krida TPTKP (Tindakan Pertama Tempat Kejadian Perkara)</li>
-<li>Krida SISKAMLING (Sistem Keamanan Lingkungan)</li>
-<li>Krida PENGAWAL</li>
-<li>Krida PELACAK</li>
-<li>Krida KOMLEK</li>
-<li>Krida PENGAMAT</li> </ol></ul>
-<!-- <p class="first-line-indent"> -->
-  <p class="first-line-indent">
+      <li><b>Kegiatan sosial:</b> ikut dalam kegiatan masyarakat seperti bakti sosial atau kampanye keselamatan.</li>
+    </ul>
+    <h3>3. Anggota Saka Bhayangkara</h3>
+    <ul style="margin-left: 40px;">
+      <li>Terbuka bagi anggota Pramuka Penegak dan Pandega yang <b>memiliki minat dalam bidang keamanan dan kepolisian</b>.</li>
+      <li>Anggota mendapat <b>pelatihan khusus dari Polri</b> dan bisa mengikuti lomba atau kegiatan kepemudaan di tingkat lokal maupun nasional.</li>
+    </ul>
+    <h3>4. Manfaat Mengikuti Saka Bhayangkara</h3>
+    <ul style="margin-left: 40px;">
+      <li>Meningkatkan <b>kedisiplinan, tanggung jawab, dan jiwa kepemimpinan</b>.</li>
+      <li>Mendapatkan <b>pengetahuan praktis tentang keamanan dan kepolisian</b>.</li>
+      <li>Kesempatan untuk <b>mengabdikan diri pada masyarakat</b> melalui kegiatan nyata.</li>
+    </ul>
+    <h3>Sejarah Singkat</h3>
+    <p class="first-line-indent">Satuan Karya Pramuka (Saka) Bhayangkara dibentuk pada tahun 1996, dan pada tahun tersebut masih bernama Pramuka KAMTIBMAS (Keamanan Ketertiban Masyarakat). Pembentukan tersebut atas instruksi bersama MENTRI / PANGLIMA POLISI DAN KAKWARNAS : NO. POL. : 28/Inst. /MK/1966 dan SK KWARNAS No. 4 /1696 tertanggal : 1 Juli 1966, dengan nama PRAMUKA KAMTIBMAS.</p>
+    <p class="first-line-indent">Pada waktu itu terdapat sembilan krida, yaitu :</p>
+    <ol style="margin-left: 30px;">
+      <li>Krida LANTAS (Lalu Lintas)</li>
+      <li>Krida PMK (Pemadam Kebakaran)</li>
+      <li>Krida SAR (Searce And Rescue)</li>
+      <li>Krida TPTKP (Tindakan Pertama Tempat Kejadian Perkara)</li>
+      <li>Krida SISKAMLING (Sistem Keamanan Lingkungan)</li>
+      <li>Krida PENGAWAL</li>
+      <li>Krida PELACAK</li>
+      <li>Krida KOMLEK</li>
+      <li>Krida PENGAMAT</li>
+    </ol>
+     <p class="first-line-indent">
 Pada tahun 1980 dikeluarkan surat keputusan atas kerja sama Kepolisian Negara Republik Indonesia (POLRI) dengan KAKWARNAS yaitu : NO. POL. SKEP / 08 / V / 1980 dan SK KWARNAS No. 050 / 1980 tanggal 1 Juli 1980, bernama SATUAN KARYA BHAYANGKARA. Ditahun 1980 pembentukan krida masih mengikuti Sembilan krida sebelumnya. Baru pada tahun 1990 dikeluarkan surat keputusan dari KAKWARNAS melewati  SK KWARNAS No. 032 / 1990 terdapat tujuh krida yang terbentuk, yaitu :</p>
 <ul style="margin-left: 10px;"> 
 <ol style="list-style-type: decimal;">
@@ -179,76 +661,78 @@ Setelah itu pada tahun 2006 berdasarkan Surat Keputusan Kepala Kepolisian Negara
 <li>Memberikan Pengetahuan, Keterampilan, Dan Pengalaman Di Bidang Keamanan Dan Ketertiban Masyarakat (Kamtibmas).</li>
 <li>Membantu Tugas-Tugas Kepolisian Secara Terbatas, Sesuai Kemampuan Pramuka Dan Arahan Pembina.</li>
 </ol></ul>
+</section>
 
-  </section>
 
   <section id="satuan">
     <h2>Badge dan Krida Saka Bhayangkara</h2>
-   <p class="first-line-indent">Badge (dibaca béj) adalah sebuah tanda, lencana, atau simbol yang diberikan untuk menunjukkan identitas, status keanggotaan, wewenang, atau pencapaian tertentu, yang bisa berupa bentuk fisik yang dikenakan di pakaian atau bentuk virtual yang ditampilkan secara digital. </p>
-</p>
-  <ol start = "1">
-  <h3><li>Badge Saka Bhayangkara</li></h3></ol>
- <p class="first-line-indent">Berikut adalah penjelasan lebih rinci mengenai setiap elemen lambang:</p>
-</p>
-   <ul style="margin-left: 40px;">
-    <li><b>Bentuk Segi Lima:</b> Melambangkan falsafah Pancasila sebagai dasar negara. </li>
-    <li><b>Bintang Tiga dan Perisai:</b> Merupakan simbol Tri Brata dan Catur Prasetya, yang merupakan kode etik bagi Kepolisian Negara Republik Indonesia. .</li>
-    <li><b>Obor:</b> Melambangkan "Sumber Terang Sejati".</li>
-    <li><b>Api Tiga Cahaya (Triwikrama):</b> Terdiri dari tiga bagian cahaya yang menjulang, melambangkan tiga pancaran cahaya: kesadaran, kewaspadaan, dan kebijaksanaan. </li>
-    <li><b>Tunas Kelapa:</b> Melambangkan Gerakan Pramuka itu sendiri, dengan segala arti kiasannya, termasuk kemampuan bertahan dalam kondisi apa pun. </li>
-  </ul>
-  <div style="text-align:center;">
-  <img src="images/logosaka.png" alt="Logo Organisasi" width="350" height="350"></div>
-
-
- <section id="dokumentasi">
-  <h2>Dokumentasi Kegiatan</h2>
-  <div class="gallery">
-    <div class="item">
-      <img src="images/lb1.jpg" alt="Lokabhara 1">
-      <p>Lokabhara 1 - Lomba Seni Tari</p>
-    </div>
-
-    <div class="item">
-      <img src="images/lb2.jpg" alt="Lokabhara 2">
-      <p>Lokabhara 2 - Sesi Foto setelah Penutupan</p>
-    </div>
-
-    <div class="item">
-      <img src="images/mjnrun.jpg" alt="Majene Run">
-      <p>Majene Run - Partisipasi anggota Saka Bhayangkara Banggae dalam Event Majene Run di Kabupaten Majene</p>
-    </div>
-
-    <div class="item">
-      <img src="images/jamlan1.jpg" alt="Jambore Lantas 1">
-      <p>Jambore Lantas - Foto Bersama</p>
-    </div>
-
-    <div class="item">
-    </div>
+    <p class="first-line-indent">Badge (dibaca béj) adalah sebuah tanda, lencana, atau simbol yang diberikan untuk menunjukkan identitas, status keanggotaan, wewenang, atau pencapaian tertentu...</p>
+    <h3>1. Badge Saka Bhayangkara</h3>
+    <ul style="margin-left: 40px;">
+      <li><b>Bentuk Segi Lima:</b> Melambangkan falsafah Pancasila.</li>
+      <li><b>Bintang Tiga dan Perisai:</b> Simbol Tri Brata dan Catur Prasetya.</li>
+      <li><b>Obor:</b> Melambangkan "Sumber Terang Sejati".</li>
+      <li><b>Api Tiga Cahaya:</b> Kesadaran, kewaspadaan, dan kebijaksanaan.</li>
+      <li><b>Tunas Kelapa:</b> Melambangkan Gerakan Pramuka.</li>
+      <li><b>2 Tunas Kelapa:</b> Satuan terpisah Putra dan Putri.</li>
+      <li><b>Warna Putih:</b> Kesucian.</li>
+      <li><b>Warna Merah:</b> Keberanian.</li>
+      <li><b>Warna Hitam:</b> Ketegasan.</li>
+      <li><b>Warna Kuning:</b> Kemakmuran.</li>
+    </ul>
+    <div class="gallery">
+  <div class="item">
+    <img src="images/logosaka.png" alt="Logo Organisasi">
+    <p>Logo Saka Bhayangkara</p>
   </div>
-</section>
+</div>
 
+    <h3>2. Krida Saka Bhayangkara</h3>
+    <div class="gallery">
+      <div class="item"><img src="images/lantas.jpg" alt="KRIDA LANTAS"><p>KRIDA LANTAS (LALU LINTAS)</p></div>
+      <div class="item"><img src="images/tibmass.png" alt="KRIDA TIBMAS"><p>KRIDA TIBMAS (KETERTIBAN MASYARAKAT)</p></div>
+      <div class="item"><img src="images/p2b.jpg" alt="KRIDA P2B"><p>KRIDA P2B (PENCEGAHAN DAN PENANGGULANGAN BENCANA)</p></div>
+      <div class="item"><img src="images/tptkpp.png" alt="TPTKP"><p>TPTKP (TINDAKAN PERTAMA TEMPAT KEJADIAN PERKARA)</p></div>
+    </div>
+  </section>
 
-<section id="keterangan">
-  <h2>Keterangan Tambahan</h2>
-  <ul>
+  <section id="dokumentasi">
+    <h2>Dokumentasi Kegiatan</h2>
+    <div class="gallery">
+      <div class="item"><img src="images/lb1.jpg" alt="Lokabhara 1"><p>Lokabhara 1 - Lomba Seni Tari</p></div>
+      <div class="item"><img src="images/lb2.jpg" alt="Lokabhara 2"><p>Lokabhara 2 - Sesi Foto setelah Penutupan</p></div>
+      <div class="item"><img src="images/mjnrun.jpg" alt="Majene Run"><p>Majene Run - Partisipasi anggota Saka Bhayangkara Banggae dalam Event Majene Run</p></div>
+      <div class="item"><img src="images/jamlan1.jpg" alt="Jambore Lantas 1"><p>Jambore Lantas - Foto Bersama</p></div>
+    </div>
+  </section>
+
+  <section id="keterangan">
+    <h2>Keterangan Tambahan</h2>
     <h3>Akses Media Sosial:</h3>
     <ul style="margin-left: 40px;">
-      <a href="https://www.instagram.com/sakabhayangkara_banggae" target="_blank"><img src="images/instagram.png" alt="Instagram" width="20" height="20"></button></a> Instagram: @sakabhayangkara_banggae
-      <p><a href="https://www.facebook.com/share/1ZX3yvMsad/" target="_blank"><img src="images/facebook.png" alt="facebook" width="20" height="20"></button></a> Facebook: Saka Bhayangkara Banggae
-    </p>
-  </ul>
-</section>
-
+      <li><a href="https://www.instagram.com/sakabhayangkara_banggae" target="_blank"><img src="images/instagram.png" alt="Instagram" width="20" height="20"> @sakabhayangkara_banggae</a></li>
+      <li><a href="https://www.facebook.com/share/1ZX3yvMsad/" target="_blank"><img src="images/facebook.png" alt="facebook" width="20" height="20"> Saka Bhayangkara Banggae</a></li>
+    </ul>
   </section>
 
   <footer>
     <p>&copy; 2025 Saka Bhayangkara Ranting Polsek Banggae | @Iqra</p>
   </footer>
+
+  <script>
+    // ===== Scroll Reveal =====
+    const sections = document.querySelectorAll("section");
+    const revealSection = () => {
+      const triggerBottom = window.innerHeight / 5 * 4;
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if(sectionTop < triggerBottom) {
+          section.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealSection);
+    window.addEventListener('load', revealSection);
+  </script>
 </body>
 </html>
-
-
-
-
