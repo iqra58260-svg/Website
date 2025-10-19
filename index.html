@@ -12,65 +12,90 @@
       box-sizing: border-box;
       scroll-behavior: smooth;
     }
+
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
       line-height: 1.8;
       background: #f4f6f9;
       color: #333;
     }
-    /* ===== Header ===== */
+
+    /* ===== Header Premium ===== */
     header {
-      background: linear-gradient(135deg, #8B0000, #B22222);
-      color: white;
-      text-align: center;
-      padding: 50px 20px;
       position: relative;
       overflow: hidden;
-    }
-    header img {
-      border-radius: 50%;
-      border: 5px solid #fff;
-      box-shadow: 0 0 30px rgba(255,255,255,0.5);
-      animation: fadeIn 2s ease-in-out;
-      transition: transform 0.5s, box-shadow 0.5s;
-    }
-    header img:hover {
-      transform: scale(1.12) rotate(-2deg);
-      box-shadow: 0 0 40px rgba(255,255,255,0.8);
-    }
-    header h1 {
-      margin-top: 15px;
-      font-size: 2.2rem;
-      letter-spacing: 1px;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
-      animation: slideDown 1.5s ease;
+      padding: 50px 20px;
+      background: linear-gradient(135deg, #8B0000, #B22222);
+      text-align: center;
+      color: white;
     }
 
-    /* ===== Navigation ===== */
+    .logo-container {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      transition: all 0.5s ease;
+    }
+
+    .logo-container:hover {
+      transform: scale(1.2) rotate(-5deg);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    }
+
+    header img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 12px rgba(0,0,0,0.6);
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      font-weight: 500;
+      text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+    }
+
+    /* ===== Navigation Premium ===== */
     nav {
-      background: #B22222;
+      background: linear-gradient(to right, #B22222, #8B0000);
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       position: sticky;
       top: 0;
       z-index: 100;
+      padding: 10px 0;
+      border-radius: 0 0 20px 20px;
       transition: all 0.3s ease;
     }
+
     nav a {
       color: white;
-      padding: 15px 22px;
+      padding: 12px 25px;
+      margin: 5px 10px;
       text-decoration: none;
       font-weight: bold;
+      border-radius: 50px;
       transition: all 0.3s ease;
-      border-radius: 6px;
-      margin: 5px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
+
     nav a:hover {
-      background: #FF4C4C;
-      transform: scale(1.08);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      background: rgba(255,0,0,0.9);
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
     }
 
     /* ===== Sections ===== */
@@ -85,10 +110,12 @@
       transform: translateY(30px);
       transition: all 0.8s ease-out;
     }
+
     section.visible {
       opacity: 1;
       transform: translateY(0);
     }
+
     section h2 {
       margin-bottom: 20px;
       font-size: 2rem;
@@ -96,15 +123,18 @@
       border-left: 6px solid #B22222;
       padding-left: 15px;
     }
+
     section h3 {
       margin-top: 25px;
       margin-bottom: 12px;
       color: #B22222;
     }
+
     section p {
       margin-bottom: 20px;
       text-align: justify;
     }
+
     .first-line-indent {
       text-indent: 2em;
       margin-bottom: 1rem;
@@ -113,10 +143,11 @@
     /* ===== Gallery ===== */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 25px;
       margin-top: 20px;
     }
+
     .gallery .item {
       background: white;
       border-radius: 15px;
@@ -125,22 +156,25 @@
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       text-align: center;
       cursor: pointer;
-      position: relative;
     }
+
     .gallery .item:hover {
       transform: translateY(-10px);
       box-shadow: 0 12px 25px rgba(0,0,0,0.2);
     }
+
     .gallery img {
       width: 100%;
-      height: 180px;
-      object-fit: cover;
+      height: auto;
+      border-radius: 10px;
       transition: transform 0.4s ease, filter 0.4s ease;
     }
+
     .gallery .item:hover img {
-      transform: scale(1.08);
-      filter: brightness(1.1);
+      transform: scale(1.05);
+      filter: brightness(1.05);
     }
+
     .gallery p {
       padding: 12px;
       background: #f4f4f4;
@@ -160,10 +194,6 @@
     }
 
     /* ===== Animations ===== */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
     @keyframes slideDown {
       from { transform: translateY(-50px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
@@ -171,392 +201,64 @@
 
     /* ===== Responsive ===== */
     @media (max-width: 768px) {
-      header h1 { font-size: 1.6rem; }
+      header h1 { font-size: 1.8rem; }
+      header p { font-size: 1rem; }
       nav a { padding: 10px 15px; font-size: 0.9rem; }
-      .gallery img { height: 150px; }
     }
+
     @media (max-width: 480px) {
       section { padding: 30px 15px; }
       header { padding: 35px 15px; }
     }
 
-    /* ===== Social Icons ===== */
-    #keterangan ul li a {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #B22222;
+    /* ===== PDF Embed ===== */
+    .pdf-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .pdf-container embed {
+      width: 100%;
+      height: 600px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    .pdf-container a {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #B22222;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
       font-weight: bold;
-      transition: color 0.3s ease;
-    }
-    #keterangan ul li a:hover {
-      color: #FF0000;
     }
 
-<style>
-/* ===== Header ===== */
-header {
-  background: linear-gradient(135deg, #8B0000, #B22222);
-  color: white;
-  text-align: center;
-  padding: 50px 20px;
-  position: relative;
-}
-
-.logo-container {
-  display: inline-block;
-  background: radial-gradient(circle at center, #fff 0%, #f1f1f1 100%);
-  padding: 15px;
-  border-radius: 50%;
-  box-shadow: 0 0 25px rgba(0,0,0,0.3);
-  transition: transform 0.5s, box-shadow 0.5s;
-}
-
-.logo-container:hover {
-  transform: scale(1.12) rotate(-3deg);
-  box-shadow: 0 0 35px rgba(0,0,0,0.5);
-}
-
-header img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-}
-
-/* ===== Header Title ===== */
-header h1 {
-  margin-top: 15px;
-  font-size: 2.2rem;
-  letter-spacing: 1px;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
-}
-
-/* ===== Navigation ===== */
-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  background: #B22222;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  transition: all 0.3s ease;
-  padding: 8px 0;
-  border-radius: 0 0 15px 15px;
-}
-
-nav a {
-  color: white;
-  padding: 12px 20px;
-  margin: 5px 10px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1rem;
-  border-radius: 10px;
-  transition: all 0.4s ease;
-  position: relative;
-}
-
-nav a::after {
-  content: '';
-  display: block;
-  height: 3px;
-  background: #fff;
-  border-radius: 3px;
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-  transform-origin: right;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-nav a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-nav a:hover {
-  background: rgba(255,255,255,0.1);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-/* ===== Reset ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  line-height: 1.8;
-  background: #f4f6f9;
-  color: #333;
-}
-
-/* ===== Header ===== */
-header {
-  background: linear-gradient(135deg, #8B0000, #B22222);
-  color: white;
-  text-align: center;
-  padding: 40px 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.logo-container {
-  display: inline-block;
-  border-radius: 50%;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
-  transition: transform 0.5s, box-shadow 0.5s;
-}
-
-.logo-container:hover {
-  transform: scale(1.15) rotate(-3deg);
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.7);
-}
-
-header img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: transparent;
-}
-
-header h1 {
-  margin-top: 15px;
-  font-size: 2rem;
-  letter-spacing: 1px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  animation: slideDown 1.5s ease;
-}
-
-/* ===== Navigation ===== */
-nav {
-  background: #B22222;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-nav a {
-  color: white;
-  padding: 14px 20px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  margin: 5px;
-  border-radius: 8px;
-}
-
-nav a:hover {
-  background: #FF0000;
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-/* ===== Animations ===== */
-@keyframes slideDown {
-  from { transform: translateY(-50px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-/* Logo besar di belakang */
-.logo-bg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 400px;       /* ukuran logo besar */
-  height: 400px;
-  background: url('images/banggae.png') no-repeat center/contain;
-  transform: translate(-50%, -50%);
-  opacity: 0.1;       /* transparansi logo besar */
-  filter: blur(10px); /* efek blur */
-  z-index: 1;
-}
-
-/* Logo utama di depan */
-.logo-container {
-  position: relative; /* supaya di atas logo-bg */
-  display: inline-block;
-  border-radius: 50%;
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
-  transition: transform 0.5s, box-shadow 0.5s;
-  z-index: 2;
-}
-
-.logo-container:hover {
-  transform: scale(1.15) rotate(-3deg);
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.7);
-}
-
-header img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: transparent;
-}
-
-header h1 {
-  position: relative; /* supaya di atas logo-bg */
-  z-index: 2;
-  margin-top: 15px;
-  font-size: 2rem;
-  letter-spacing: 1px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  animation: slideDown 1.5s ease;
-}
-/* Logo besar di belakang */
-.logo-bg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 400px;       /* ukuran logo besar */
-  height: 400px;
-  background: url('images/banggae.png') no-repeat center/contain;
-  transform: translate(-50%, -50%);
-  opacity: 0.25;       /* sekarang lebih terlihat */
-  filter: blur(8px);   /* sedikit blur */
-  z-index: 1;
-}
-
-/* Logo utama di depan dengan efek pinggiran putih */
-.logo-container {
-  position: relative; /* di atas logo-bg */
-  display: inline-block;
-  padding: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2); /* efek transparan di belakang logo utama */
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 0 4px white; /* pinggiran putih */
-  transition: transform 0.5s, box-shadow 0.5s;
-  z-index: 2;
-}
-
-.logo-container:hover {
-  transform: scale(1.15) rotate(-3deg);
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.9), 0 0 0 4px white;
-}
-
-header img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: transparent;
-header {
-  background: #ffffff; /* putih */
-  color: #8B0000;
-  text-align: center;
-  padding: 40px 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Logo utama di depan dengan pinggiran putih */
-.logo-container {
-  display: inline-block;
-  padding: 10px;
-  border-radius: 50%;
-  background: white; /* pinggiran putih */
-  box-shadow: 0 0 20px rgba(0,0,0,0.2); /* bayangan halus */
-  transition: transform 0.5s, box-shadow 0.5s;
-}
-
-.logo-container:hover {
-  transform: scale(1.15) rotate(-3deg);
-  box-shadow: 0 0 40px rgba(0,0,0,0.3);
-}
-
-header img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: transparent;
-}
-
-/* Hapus logo besar di belakang */
-/* Jadi tidak perlu kode .logo-bg lagi */
-body {
-  font-family: Arial, sans-serif;
-}
-
-.gallery {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-
-.item {
-  text-align: center;
-  cursor: pointer;
-}
-
-.item img {
-  width: 200px;
-  border-radius: 10px;
-  transition: transform 0.3s;
-}
-
-.item img:hover {
-  transform: scale(1.05);
-}
-
-/* Overlay / lightbox */
-.overlay {
-  display: none;
-  position: fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  z-index: 1000;
-}
-
-.overlay img {
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 15px;
-  margin-bottom: 20px;
-}
-
-.close-btn {
-  padding: 10px 20px;
-  background: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-
+    .pdf-container a:hover {
+      background: #8B0000;
+    }
   </style>
 </head>
 <body>
+  <!-- ===== Header Premium ===== -->
   <header>
-  <div class="logo-bg"></div> <!-- Logo besar blur di belakang -->
-  <div class="logo-container">
-    <img src="images/banggae.png" alt="Logo Organisasi">
-  </div>
-  <h1>SAKA BHAYANGKARA RANTING POLSEK BANGGAE</h1>
-</header>
+    <div class="logo-container">
+      <img src="images/banggae.png" alt="Logo Organisasi">
+    </div>
+    <h1>SAKA BHAYANGKARA</h1>
+    <p>Ranting Polsek Banggae - Pengabdian & Kepemudaan</p>
+  </header>
 
-<nav>
-  <a href="#Saka">Satuan Karya</a>
-  <a href="#Saka bhayangkara">Saka Bhayangkara</a>
-  <a href="#satuan">Badge dan Krida</a>
-  <a href="#dokumentasi">Dokumentasi</a>
-  <a href="#keterangan">Keterangan</a>
-</nav>
-
+  <!-- ===== Navigation Premium ===== -->
+  <nav>
+    <a href="#Saka">Satuan Karya</a>
+    <a href="#Saka bhayangkara">Saka Bhayangkara</a>
+    <a href="#satuan">Badge dan Krida</a>
+    <a href="#dokumentasi">Dokumentasi</a>
+    <a href="#keterangan">Keterangan</a>
+    <a href="#pdf">PDF</a>
+  </nav>
 
   <!-- ===== ISI ASLI WEB ===== -->
   <section id="Saka">
@@ -713,6 +415,19 @@ Setelah itu pada tahun 2006 berdasarkan Surat Keputusan Kepala Kepolisian Negara
     </ul>
   </section>
 
+   <!-- ===== PDF Section ===== -->
+  <section id="pdf">
+    <h2>Dokumen PDF</h2>
+    <p class="first-line-indent">Berikut adalah dokumen PDF terkait kegiatan Saka Bhayangkara Ranting Polsek Banggae. Anda dapat melihatnya langsung di bawah atau mengunduhnya.</p>
+    <div class="pdf-container">
+      <!-- Embed PDF di halaman -->
+      <embed src="files/contoh.pdf" type="application/pdf">
+      <!-- Tautan download PDF -->
+      <br>
+      <a href="file/MATERI.pdf" target="_blank">Download PDF</a>
+    </div>
+  </section>
+
   <footer>
     <p>&copy; 2025 Saka Bhayangkara Ranting Polsek Banggae | @Iqra</p>
   </footer>
@@ -734,4 +449,3 @@ Setelah itu pada tahun 2006 berdasarkan Surat Keputusan Kepala Kepolisian Negara
   </script>
 </body>
 </html>
-
